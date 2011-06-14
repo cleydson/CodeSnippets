@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Wait a Thread using AutoResetEvent.</Title>
+      <Author>Cleydson Silva de Andrade</Author>
+      <Description>Define a variable using AutoResetEvent() to wait a thread.</Description>
+      <Shortcut>espi</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>VariableName</ID>
+          <Type>String</Type>
+          <ToolTip>Name of the variable.</ToolTip>
+          <Default>esperaInterna</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="VB" Kind="method decl">
+      <![CDATA[Dim $VariableName$ As New System.Threading.AutoResetEvent(False)
+$VariableName$.Set()
+$VariableName$.WaitOne(System.Threading.Timeout.Infinite)]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

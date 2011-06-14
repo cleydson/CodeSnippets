@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Define chamada de serviço</Title>
+      <Author>Cleydson Silva de Andrade</Author>
+      <Description>Define chamada do serviço forçando sincronicidade.</Description>
+      <Shortcut>sls</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>variavelContendoMetodo</ID>
+          <Type>String</Type>
+          <ToolTip>Substitua com o nome da variavel que vai conter a callBack function(Estilo Metodo anônimo).</ToolTip>
+          <Default>aoRetornarAcao</Default>
+        </Literal>
+        <Literal>
+          <ID>NomeDoServico</ID>
+          <Type>String</Type>
+          <ToolTip>Nome da classe do serviço no qual você irá conectar.</ToolTip>
+          <Default>NomeDoServico</Default>
+        </Literal>
+        <Literal>
+          <ID>NomeDaVariavelDoServico</ID>
+          <Type>String</Type>
+          <ToolTip>Nome da variavel que foi declarada neste classe referente a este serviço que você irá conectar.</ToolTip>
+          <Default>NomeDaVariavelDoServico</Default>
+        </Literal>
+        <Literal>
+          <ID>NomeDoMetodo</ID>
+          <Type>String</Type>
+          <ToolTip>Nome do metodo do serviço que será chamado.</ToolTip>
+          <Default>ListarAlgumaCoisa</Default>
+        </Literal>
+        <Literal>
+          <ID>NomeDaVariavelQueReceberaORetorno</ID>
+          <Type>String</Type>
+          <ToolTip>Nome da variavel que receberá o retorno do servico.</ToolTip>
+          <Default>source</Default>
+        </Literal>
+        <Literal>
+          <ID>ObjetoRetorno</ID>
+          <Type>String</Type>
+          <ToolTip>Objeto de retorno. Este é o tipo da Collection(ObservableCollection) de retorno.</ToolTip>
+          <Default>ObjetoRetorno</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="VB" Kind="method body">
+      <![CDATA[Dim $NomeDaVariavelQueReceberaORetorno$ As ObservableCollection(Of $ObjetoRetorno$) = Nothing
+Dim $variavelContendoMetodo$ = Sub(s As Object, evt As $NomeDoServico$.$NomeDoMetodo$CompletedEventArgs)
+						   $NomeDaVariavelQueReceberaORetorno$ = evt.Result
+						   EsperarServico.Set()
+					   End Sub
+AddHandler $NomeDaVariavelDoServico$.$NomeDoMetodo$Completed, $variavelContendoMetodo$
+$NomeDaVariavelDoServico$.$NomeDoMetodo$Async(PARAMETROS)
+EsperarServico.WaitOne(System.Threading.Timeout.Infinite)
+RemoveHandler $NomeDaVariavelDoServico$.$NomeDoMetodo$Completed, $variavelContendoMetodo$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

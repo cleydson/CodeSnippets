@@ -10,17 +10,28 @@
     <Snippet>
       <Declarations>
         <Literal>
-          <ID>PropertyName</ID>
+          <ID>variavelContendoClosure</ID>
           <Type>String</Type>
-          <ToolTip>Replace with property name.</ToolTip>
-          <Default>NewProperty</Default>
+          <ToolTip>Substitua com o nome da variavel que vai conter a callBack function(Estilo closure).</ToolTip>
+          <Default>aoRetornarAcao</Default>
         </Literal>
         <Literal>
-          <ID>PropertyType</ID>
-          <Type>
-          </Type>
-          <ToolTip>Replace with the property type.</ToolTip>
-          <Default>String</Default>
+          <ID>NomeDoServico</ID>
+          <Type>String</Type>
+          <ToolTip>Nome da classe do serviço no qual você irá conectar.</ToolTip>
+          <Default>NomeDoServico</Default>
+        </Literal>
+        <Literal>
+          <ID>NomeDaVariavelDoServico</ID>
+          <Type>String</Type>
+          <ToolTip>Nome da variavel que foi declarada neste classe referente a este serviço que você irá conectar.</ToolTip>
+          <Default>NomeDaVariavelDoServico</Default>
+        </Literal>
+        <Literal>
+          <ID>NomeDoMetodo</ID>
+          <Type>String</Type>
+          <ToolTip>Nome do metodo do serviço que será chamado.</ToolTip>
+          <Default>ListarAlgumaCoisa</Default>
         </Literal>
         <Object>
           <ID>PrivateVariable</ID>
@@ -30,8 +41,19 @@
         </Object>
       </Declarations>
       <Code Language="VB" Kind="method decl">
-      <![CDATA[Private $PrivateVariable$ As $PropertyType$
-Public Property $PropertyName$() As $PropertyType$
+      <![CDATA[Dim $variavelContendoClosure$ = Sub(s As Object, evt As $NomeDoServico$.$NomeDoMetodo$CompletedEventArgs)
+						   source = evt.Result
+						   EsperarServico.Set()
+					   End Sub
+AddHandler ServicoNota.$NomeDoMetodo$Completed, $variavelContendoClosure$
+ServicoNota.$NomeDoMetodo$Async(codigoGeral)
+EsperarServico.WaitOne(System.Threading.Timeout.Infinite)
+RemoveHandler ServicoNota.$NomeDoMetodo$Completed, $variavelContendoClosure$
+      
+      
+      
+      Private $PrivateVariable$ As $PropertyType$
+Public Property $variavelContendoClosure$() As $PropertyType$
     Get
         Return $PrivateVariable$ 
     End Get
